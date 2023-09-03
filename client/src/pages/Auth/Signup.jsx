@@ -21,7 +21,8 @@ const Signup = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:3000/auth/register', {
+      if(formData.password.length>6){
+        const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
@@ -35,6 +36,10 @@ const Signup = () => {
         alert("Registered Successfully")
         navigate('/login')
      }
+      }
+      else{
+        alert("Password should contains atleast 6 character")
+      }
     } catch (error) {
      
       console.error('An error occurred:', error);
@@ -79,6 +84,7 @@ const Signup = () => {
               className="w-full p-2 bg-gray-700 border rounded text-white"
               required
             />
+            <p>Password atleast contains 6 characters</p>
           </div>
           <div className="mb-4">
             <label className="block text-gray-400 font-semibold">Usecase Type:</label>
@@ -115,9 +121,9 @@ const Signup = () => {
           </div>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account?{' '}
+          Already have an account?{' '}
           <Link to="/login" className="text-blue-400 hover:underline">
-            Create New Account
+            Login
           </Link>
         </p>
       </div>
