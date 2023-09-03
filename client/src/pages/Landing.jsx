@@ -22,8 +22,8 @@ const Landing = () => {
                         </div>
                         <div className='flex flex-row'>
 
-                            <button className=" text-white font-semibold justify-center h-8 lg:w-[100px] w-[60px] bg-[#6DA5C0]  lg:text-md text-sm rounded-full flex  items-center  hover:bg-[#294d61] ">LogIn</button>
-                            <button className=" text-white font-semibold justify-center h-8 lg:w-[100px] w-[60px] bg-[#6DA5C0]  lg:text-md text-sm rounded-full flex  items-center  hover:bg-[#294d61] ml-2">SignUp</button>
+                           <Link to='/login'><button className=" text-white font-semibold justify-center h-8 lg:w-[100px] w-[60px] bg-[#6DA5C0]  lg:text-md text-sm rounded-full flex  items-center  hover:bg-[#294d61] ">LogIn</button></Link> 
+                           <Link to='/signup'><button className=" text-white font-semibold justify-center h-8 lg:w-[100px] w-[60px] bg-[#6DA5C0]  lg:text-md text-sm rounded-full flex  items-center  hover:bg-[#294d61] ml-2">SignUp</button></Link> 
                         </div>
 
                     </div>
