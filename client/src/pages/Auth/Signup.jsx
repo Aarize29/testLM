@@ -87,7 +87,7 @@ const Signup = () => {
             <p>Password atleast contains 6 characters</p>
           </div>
           <div className="mb-4">
-            <label className="block text-gray-400 font-semibold">Usecase Type:</label>
+            <label className="block text-gray-400 font-semibold">You want to be:</label>
             <select
               name="usecaseType"
               onChange={handleChange}
