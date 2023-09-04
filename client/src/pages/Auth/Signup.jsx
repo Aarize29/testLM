@@ -21,7 +21,7 @@ const Signup = () => {
     e.preventDefault();
   
     try {
-      if(formData.password.length>6){
+      if(formData.password.length>=6){
         const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST', 
         headers: {
