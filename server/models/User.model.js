@@ -7,6 +7,8 @@ const User=new Schema({
     password:{type: String, required: true},
     usecaseType:{type:String, required:true},
     profession:{type:String,required:true},
+    company:{type:String,default:"no company specified"},
+    website:{type:String,default:"no website specified"},
     date: {type: Date, default: Date.now}
 });
 

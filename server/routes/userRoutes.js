@@ -79,6 +79,68 @@ router.post('/login', async (req, res) => {
       return res.status(500).json({ status: 'error', error: error.message });
     }
   });
+
+
+router.get('/userdetail',verifyToken,async(req,res)=>{
+          const currentuser=req.user;
+         // console.log(currentuser)
+          try{
+            const user = await User.findOne({
+              _id:currentuser._id,
+            });
+            console.log(user)
+
+            res.json({user})
+          }
+          catch(err){
+            console.log(err);
+          }
+})
+
+
+//update user
+router.put('/updateprofile', verifyToken, async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      { $set: req.body },
+      { new: true }
+    ).select('-password');
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({ user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Middleware function to verify JWT token
+function verifyToken(req, res, next) {
+  const token = req.headers.authorization;
+
+  if (!token || !token.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized. Bearer token missing or invalid.' });
+  }
+
+  const extractedToken = token.split(' ')[1];
+
+  try {
+    // Verify and decode the token
+    const decodedToken = jwt.verify(extractedToken, 'secret123'); // Replace with your actual secret key
+
+    // Attach the user object to the request for further use in routes
+    req.user = decodedToken;
+
+    // Continue to the next middleware or route
+    next();
+  } catch (error) {
+    // Handle token verification errors (e.g., token expired, invalid token)
+    return res.status(401).json({ error: 'Unauthorized. Token is not valid.' });
+  }
+}
   
 
 module.exports = router;

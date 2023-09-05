@@ -31,10 +31,10 @@ const Login = () => {
      if(data.status==="ok"){
         alert("login successfull")
         if(data.usecaseType==='Licensee'){
-        navigate('/celebhome')
+        navigate('/userhome')
         }
         else{
-            navigate('/userhome')
+            navigate('/celebhome')
         }
      }
      else{
